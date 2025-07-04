@@ -56,7 +56,8 @@ Even if negative accounts like collections, charge-offs, or late payments are te
       }
     );
 
-    res.json({ reply: response.data.choices[0].message.content });
+    const reply = response?.data?.choices?.[0]?.message?.content || "Sorry, I couldn't understand that. Please try again.";
+res.json({ reply });
   } catch (err) {
     console.error("OpenAI error:", err.response?.data || err.message);
     res.status(500).json({ error: "Failed to contact OpenAI" });
